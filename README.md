@@ -1,16 +1,61 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Segment Builder React App
 
-Currently, two official plugins are available:
+A React app to create and save user segments with dynamic schemas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Click **Save segment** to open the modal.
+- Enter a segment name.
+- Add schemas from a dropdown (First Name, Last Name, Gender, Age, Account Name, City, State).
+- Click **+ Add new schema** to add the selected schema to the blue box.
+- Added dropdowns only show unselected options.
+- Remove schemas dynamically.
+- Save the segment — JSON is sent to a webhook.
+- Toast notifications for success/error messages.
+- Bootstrap modal with fade effect.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+## Installation & Run
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/Sarathadevi-I/segment-builder.git
+cd segment-builder
+npm install
+npm start
+````
+
+Open [http://localhost:3000](http://localhost:5173) in your browser.
+
+## Webhook Setup
+
+* Use **Postman Echo**, **Webhook.site**, or **Pipedream** to get a test URL.
+* Update `WEBHOOK_URL` in `src/components/SaveModal.jsx`:
+
+```js
+const WEBHOOK_URL = "https://eoxdqrondvdi0rj.m.pipedream.net"; 
+```
+
+* Data sent on save:
+
+```json
+{
+  "segment_name": "last_10_days_blog_visits",
+  "schema": [
+    {"first_name": "First Name"},
+    {"last_name": "Last Name"}
+  ]
+}
+```
+
+## Technologies
+
+* React + Hooks
+* Bootstrap 5
+* React-Toastify
+
+## License
+
+MIT
+
+
